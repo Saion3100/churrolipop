@@ -287,14 +287,19 @@ menuCards.forEach(card => {
 // Menu button click effect
 const menuBtns = document.querySelectorAll('.menu-btn');
 // ボイス音声をそれぞれ用意
-const voices = [
-    new Audio('sounds/voice1.mp3'),
-    new Audio('sounds/voice2.mp3'),
-    new Audio('sounds/voice3.mp3'),
-    new Audio('sounds/voice4.mp3'),
-    new Audio('sounds/voice5.mp3'),
-    new Audio('sounds/voice6.mp3')
+const voiceGroups = [
+    ['voice1.mp3'],
+    ['voice2.mp3'],
+    ['voice3-1.mp3', 'voice3-2.mp3'],
+    ['voice4.mp3'],
+    ['voice5.mp3'],
+    ['voice6-1.mp3', 'voice6-2.mp3'],
 ];
+
+const voices = voiceGroups.map(group =>
+    group.map(file => new Audio(`sounds/${file}`))
+);
+
 
 menuBtns.forEach((btn, index) => {
     btn.addEventListener('click', function (e) {
@@ -319,12 +324,16 @@ menuBtns.forEach((btn, index) => {
         setTimeout(() => ripple.remove(), 600);
 
         // ===== 音声を再生 =====
-        if (voices[index]) {
-            voices[index].pause();
-            voices[index].currentTime = 0;
-            voices[index].play();
-        }
+        const group = voices[index];
+        if (group && group.length > 0) {
+            // ランダムに選択
+            const randomVoice = group[Math.floor(Math.random() * group.length)];
 
+            // 再生前にリセット
+            randomVoice.pause();
+            randomVoice.currentTime = 0;
+            randomVoice.play();
+        }
         // Show notification
         //showNotification('カートに追加しました！');
     });
