@@ -110,6 +110,8 @@ function updateCountdown() {
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
 
+    const timerContainer = document.querySelector('.countdown-timer');
+
     if (daysElement) {
         animateValue(daysElement, parseInt(daysElement.textContent) || 0, days, 500);
     }
@@ -126,12 +128,23 @@ function updateCountdown() {
     // If countdown is over
     if (distance < 0) {
         document.querySelector('.countdown-title').textContent = '文化祭開催中！';
-        if (daysElement) daysElement.textContent = '00';
-        if (hoursElement) hoursElement.textContent = '00';
-        if (minutesElement) minutesElement.textContent = '00';
-        if (secondsElement) secondsElement.textContent = '00';
+        if (timerContainer) {
+            timerContainer.innerHTML = `
+                <div class="festival-now">
+                    <p>ようこそ！<br>楽しんでいってね！</p>
+                </div>
+            `;
+        }
+        return;
     }
 }
+
+// ===== カウントダウンを1秒ごとに更新 =====
+document.addEventListener("DOMContentLoaded", () => {
+    updateCountdown(); // ページ読み込み時に1回実行
+    setInterval(updateCountdown, 1000); // 1秒ごとに更新
+});
+
 
 // Animate number changes
 function animateValue(element, start, end, duration) {

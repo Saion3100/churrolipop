@@ -851,17 +851,15 @@ body {
 }
 
 .map-placeholder {
-    background: url("img/map.jpg");
-    /* background: white; */
-    height: 400px;
+    background: url("img/map.jpg") no-repeat center left top;
+    background-size: contain;
+    background-position: left top;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-light);
-    font-size: 5rem;
     box-shadow: 0 10px 30px var(--shadow);
+    background-color: white;
+
 }
 
 .map-placeholder p {
@@ -878,9 +876,9 @@ body {
 
 @media (max-width: 480px) {
     .map-placeholder {
-        background: url("img/map_trm.jpg") no-repeat left top;
-        background-size: cover;
-        background-attachment: fixed;
+        background: url("img/map_trm.jpg") no-repeat center center;
+        background-size: contain;
+        aspect-ratio: 4 / 3;
         border-radius: 15px;
     }
 }
@@ -1928,5 +1926,23 @@ textarea:focus-visible {
     .school-map {
         background: url("img/map_trm.jpg") center/cover no-repeat;
         border-radius: 15px;
+    }
+}
+
+.festival-now {
+    font-size: 2rem;
+    color: #fdfdfd;
+    font-weight: bold;
+    text-align: center;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fbc8ef, 0 0 20px #fb9aba, 0 0 30px #f50057;
+    }
+
+    to {
+        text-shadow: 0 0 20px #90eef3, 0 0 30px #00c8f5, 0 0 40px #d500f9;
     }
 }
