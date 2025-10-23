@@ -288,7 +288,7 @@ menuCards.forEach(card => {
 const menuBtns = document.querySelectorAll('.menu-btn');
 // ボイス音声をそれぞれ用意
 const voiceGroups = [
-    ['voice1.mp3'],
+    ['voice1-1.mp3', 'voice1-2.mp3', 'voice1-3.mp3'],
     ['voice2.mp3'],
     ['voice3-1.mp3', 'voice3-2.mp3'],
     ['voice4.mp3'],
